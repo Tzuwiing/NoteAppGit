@@ -26,17 +26,19 @@ class DatabaseHelper {
   // ========== CREATE TABLE ========
   Future _createDB(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE notes(
+      CREATE TABLE notes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT,
         content TEXT,
         author TEXT,
         created_at TEXT,
-        updated_at TEXT) ''');
+        updated_at TEXT
+        )
+     ''');
   }
 
   //========== CREATE ===========
-  Future<int> inertNote(Note note) async {
+  Future<int> insertNote(Note note) async {
     final db = await instance.database;
     return await db.insert(
       "notes",

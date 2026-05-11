@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
       // theme:
       home: AnimatedSplashScreen(
         splash: Lottie.asset('assets/download.json'),
-        nextScreen: Mainpage(onToggleTheme: toggleTheme),
+        nextScreen: HomePage(onToggleTheme: toggleTheme),
         splashTransition: SplashTransition.fadeTransition,
         backgroundColor: Colors.white,
         splashIconSize: 150,

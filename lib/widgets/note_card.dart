@@ -51,20 +51,8 @@ class NoteCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 8),
+
             //ACTION
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GestureDetector(
-                  onTap: onDelete,
-                  child: Icon(
-                    Icons.delete,
-                    size: 18,
-                    color: theme.colorScheme.error,
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:noteapp/models/note_model.dart';
 
 class NotePage extends StatefulWidget {
   final Note? note;
+
   const NotePage({super.key, this.note});
 
   @override
@@ -13,13 +14,14 @@ class _NotePageState extends State<NotePage> {
   final titleController = TextEditingController();
   final contentController = TextEditingController();
   final authorController = TextEditingController();
-  @override
-  bool _isSaving = false;
 
-  //============= INIT ================
+  bool _isSaving = false; // 🔴 anti double save
+
+  // ================= INIT =================
   @override
   void initState() {
     super.initState();
+
     if (widget.note != null) {
       titleController.text = widget.note!.title;
       contentController.text = widget.note!.content;
@@ -27,7 +29,7 @@ class _NotePageState extends State<NotePage> {
     }
   }
 
-  //============= DISPOSE============
+  // ================= DISPOSE =================
   @override
   void dispose() {
     titleController.dispose();
@@ -36,15 +38,14 @@ class _NotePageState extends State<NotePage> {
     super.dispose();
   }
 
-  //============= SAVE NOTE =============
-
+  // ================= SAVE NOTE =================
   void saveNote() {
     if (_isSaving) return;
     _isSaving = true;
 
     if (!mounted) return;
 
-    // VALIDASI INPUT
+    // 🔴 VALIDASI INPUT
     if (titleController.text.trim().isEmpty &&
         contentController.text.trim().isEmpty) {
       Navigator.pop(context);
@@ -61,16 +62,20 @@ class _NotePageState extends State<NotePage> {
       createdAt: widget.note?.createdAt ?? now,
       updatedAt: now,
     );
+
     Navigator.pop(context, note);
   }
 
-  //=========== DELETE NOTE =============
+  // ================= DELETE =================
   void deleteNote() async {
+    //tambah bagian ini
+    final navigator = Navigator.of(context);
+
     final confirm = await showDialog(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (context) => AlertDialog(
         title: const Text("Konfirmasi"),
-        content: const Text("Apakah Anda yakin ingin menghapus catatan ini?"),
+        content: const Text("Yakin ingin menghapus?"),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
@@ -83,90 +88,93 @@ class _NotePageState extends State<NotePage> {
         ],
       ),
     );
+
+    if (!mounted) return;
+
     if (confirm == true) {
-      Navigator.pop(context, "delete");
+      //ubah bagian ini
+      navigator.pop("delete");
     }
   }
-//============= UI ============
+
+  // ================= UI =================
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    return SafeArea(
+      child: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop || _isSaving) return;
 
-    return PopScope(
-
-      //HANDLE BACK SYSTEM
-      canPop: false,
-
-
-      onPopInvokedWithResult: (didPop, result) {
-        if (didPop || _isSaving)  return;
-        _isSaving = true;
-
-
-        //AMBIL NAVIGATOR SEBELUM DIPAKAI
-        final navigator = Navigator.of(context);
-        saveNote();
-
-        navigator.pop();
-      },
-
-
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: saveNote,
-          ),
-          actions: [
-            IconButton(
-              onPressed: deleteNote,
-              icon: const Icon(Icons.delete_outline),
+          //hapus beberapa bagian
+          saveNote();
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: saveNote,
             ),
-          ],
-        ),
-      
-        body: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // ========TITLE========
-              TextField(
-                controller: titleController,
-                autofocus: true,
-                style: Theme.of(context).textTheme.titleLarge,
-                decoration: const InputDecoration(
-                  hintText: "Title",
-                  border: InputBorder.none,
+            actions: [
+              //penyesuaian tombol hapus data
+              if (widget.note != null)
+                IconButton(
+                  onPressed: deleteNote,
+                  icon: const Icon(Icons.delete),
                 ),
-              ),
-              const SizedBox(height: 8),
-      
-              Expanded(
-                child: TextField(
-                  controller: contentController,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                  maxLines: null,
-                  expands: true,
+            ],
+          ),
+
+          body: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // ===== TITLE =====
+                TextField(
+                  controller: titleController,
+                  autofocus: true, // 🔴 UX improvement
+                  style: theme.textTheme.titleLarge,
                   decoration: const InputDecoration(
-                    hintText: "Note",
+                    hintText: "Judul",
                     border: InputBorder.none,
                   ),
                 ),
-              ),
-              Divider(
-                color: Theme.of(context).dividerColor.withValues(alpha: 0.3),
-              ),
-              SizedBox(height: 8),
-              TextField(
-                controller: authorController,
-                decoration: const InputDecoration(
-                  hintText: "Author",
-                  border: InputBorder.none,
+
+                const SizedBox(height: 10),
+
+                // ===== CONTENT =====
+                Expanded(
+                  child: TextField(
+                    controller: contentController,
+                    style: theme.textTheme.bodyMedium,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    expands: true,
+                    decoration: const InputDecoration(
+                      hintText: "Tulis catatan...",
+                      border: InputBorder.none,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+
+                Divider(color: theme.dividerColor.withValues(alpha: 0.3)),
+
+                const SizedBox(height: 6),
+
+                // ===== AUTHOR =====
+                TextField(
+                  controller: authorController,
+                  style: theme.textTheme.bodySmall,
+                  decoration: const InputDecoration(
+                    hintText: "Ditulis oleh...",
+                    border: InputBorder.none,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
