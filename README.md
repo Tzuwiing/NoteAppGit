@@ -14,7 +14,7 @@ Aplikasi pencatatan (Note App) yang simpel, cepat, dan elegan, dibangun mengguna
 
 | Beranda (Light Mode) | Beranda (Dark Mode) | Detail Catatan (Light) | Detail Catatan (Dark) |
 | :---: | :---: | :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/c7665150-53da-4253-820d-367839f9bea4" width="160" /> | <img src="https://github.com/user-attachments/assets/69b378bf-8ea7-45e5-be13-73590dbb3b73" width="160" /> | <img src="https://github.com/user-attachments/assets/75b7a1e3-ed5a-4d01-809c-3965d60fb4ea" width="160" /> | <img src="https://github.com/user-attachments/assets/08dba5bf-ada6-4c4c-82fa-7cd1231bd572" width="160" /> |
+| <img src="https://github.com/user-attachments/assets/c7665150-53da-4253-820d-367839f9bea4" width="160" /> | <img src="https://github.com/user-attachments/assets/69b378bf-8ea7-45e5-be13-73590dbb3b73" width="160" /> | <img src="https://github.com/user-attachments/assets/08dba5bf-ada6-4c4c-82fa-7cd1231bd572" width="160" /> | <img src="https://github.com/user-attachments/assets/75b7a1e3-ed5a-4d01-809c-3965d60fb4ea" width="160" />  |
 
 ## 🛠️ Teknologi yang Digunakan
 
