@@ -16,11 +16,11 @@ Aplikasi pencatatan (Note App) yang simpel, cepat, dan elegan, dibangun mengguna
 
 | Beranda (Light Mode) | Beranda (Dark Mode) | Detail Catatan (Light) | Detail Catatan (Dark) |
 | :---: | :---: | :---: | :---: |
-| <img width="524" height="1035" alt="Screenshot 2026-05-12 101409" src="https://github.com/user-attachments/assets/c7665150-53da-4253-820d-367839f9bea4" />
-<img width="529" height="1070" alt="Screenshot 2026-05-12 101419" src="https://github.com/user-attachments/assets/69b378bf-8ea7-45e5-be13-73590dbb3b73" />
-<img width="543" height="1068" alt="Screenshot 2026-05-12 101438" src="https://github.com/user-attachments/assets/08dba5bf-ada6-4c4c-82fa-7cd1231bd572" />
-<img width="528" height="1066" alt="Screenshot 2026-05-12 101429" src="https://github.com/user-attachments/assets/75b7a1e3-ed5a-4d01-809c-3965d60fb4ea" />
- |
+| <img width="524" height="1035" alt="Screenshot 2026-05-12 101409" src="https://github.com/user-attachments/assets/c7665150-53da-4253-820d-367839f9bea4" />|
+|<img width="529" height="1070" alt="Screenshot 2026-05-12 101419" src="https://github.com/user-attachments/assets/69b378bf-8ea7-45e5-be13-73590dbb3b73" />|
+|<img width="543" height="1068" alt="Screenshot 2026-05-12 101438" src="https://github.com/user-attachments/assets/08dba5bf-ada6-4c4c-82fa-7cd1231bd572" />|
+|<img width="528" height="1066" alt="Screenshot 2026-05-12 101429" src="https://github.com/user-attachments/assets/75b7a1e3-ed5a-4d01-809c-3965d60fb4ea" />|
+ 
 
 ## 🛠️ Teknologi yang Digunakan
 
